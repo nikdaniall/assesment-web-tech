@@ -11,15 +11,22 @@
 
     <header class="navbar">
         <a href="index.html" class="logo" title="Return to Homepage" style="text-decoration: none; color: inherit;">[ Endangered Earth ]</a>
-        <nav class="nav-links">
+        
+        <button class="hamburger-toggle" id="menu-toggle" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <nav class="nav-links" id="nav-menu">
             <a href="index.html">Home</a>
             
             <div class="dropdown">
-                <a href="#featured-animals" class="dropdown-trigger">Species</a>
+                <a href="index.html" class="dropdown-trigger">Species</a>
                 <div class="dropdown-content">
-                    <a href="#featured-animals" data-nav-filter="all">All Species</a>
-                    <a href="#featured-animals" data-nav-filter="land">Land animals</a>
-                    <a href="#featured-animals" data-nav-filter="marine">Marine Life</a>
+                    <a href="index.html" data-nav-filter="all">All Species</a>
+                    <a href="index.html" data-nav-filter="land">Land animals</a>
+                    <a href="index.html" data-nav-filter="marine">Marine Life</a>
                 </div>
             </div>
 
