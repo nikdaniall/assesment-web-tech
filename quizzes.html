@@ -181,7 +181,7 @@
 <body class="quiz-page">
 
     <header class="navbar">
-        <div class="logo">[ Endangered Earth ]</div>
+        <a href="index.html" class="logo" title="Return to Homepage" style="text-decoration: none; color: inherit;">[ Endangered Earth ]</a>
         <nav class="nav-links">
             <a href="index.html">Home</a>
             
@@ -197,7 +197,7 @@
 
             <a href="quizzes.html">Quizzes</a>
             <a href="team.html">Team</a>
-            <a href="index.html" id="nav-search-trigger">Search</a>
+            <a href="index.html" id="nav-search-trigger" title="Search by species name, type, or habitat">Search</a>
         </nav>
     </header>
 
@@ -425,7 +425,7 @@
                         <i class="fa-solid fa-earth-americas" style="font-size: 3.5rem; color: var(--accent-orange); margin-bottom: 10px;"></i>
                         <h2 style="font-family: 'Playfair Display', serif; color: white;">QUIZ COMPLETED</h2>
                         <div class="results-score">${finalUserScore} / ${quizQuestions.length}</div>
-                        <div class="results-rating">${ratingTitle}</div>
+                        <div class="results-rating" title="Score higher next time to unlock the next conservation tier!">${ratingTitle}</div>
                         <p class="results-text">${subdescription}</p>
                         <button class="quiz-btn" onclick="window.location.reload()">Retake Quiz</button>
                     </div>

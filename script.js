@@ -55,12 +55,13 @@ document.addEventListener("DOMContentLoaded", () => {
             card.setAttribute("data-name", animal.name.toLowerCase());
             card.setAttribute("data-habitat", animal.habitat.toLowerCase());
 
+            // TOOLTIPS ADDED HERE VIA THE 'title' ATTRIBUTE
             card.innerHTML = `
                 <img src="${animal.img}" alt="${animal.name}">
                 <div class="card-content">
                     <h3 style="font-family: 'Playfair Display', serif; color: white; margin-bottom: 5px;">${animal.name}</h3>
-                    <p style="color: var(--accent-orange); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">${animal.status}</p>
-                    <p style="font-size: 0.9rem; opacity: 0.7;">Habitat: ${animal.habitat}</p>
+                    <p title="Faces an extremely high risk of extinction in the wild" style="color: var(--accent-orange); font-size: 0.85rem; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px;">${animal.status}</p>
+                    <p title="Core geographic distribution" style="font-size: 0.9rem; opacity: 0.7;">Habitat: ${animal.habitat}</p>
                 </div>
             `;
 
