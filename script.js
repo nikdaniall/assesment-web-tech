@@ -302,4 +302,26 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }, speedInterval);
     }
+
+    // ==========================================
+    // MOBILE MENU HAMBURGER DRAWER TOGGLE
+    // ==========================================
+    const menuToggle = document.getElementById("menu-toggle");
+    const navMenu = document.getElementById("nav-menu");
+
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener("click", () => {
+            menuToggle.classList.toggle("open");
+            navMenu.classList.toggle("show");
+        });
+
+        // Auto collapse mobile menu structure window drawer if an interior navigation anchor link gets clicked
+        const interiorLinks = navMenu.querySelectorAll("a:not(.dropdown-trigger)");
+        interiorLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                menuToggle.classList.remove("open");
+                navMenu.classList.remove("show");
+            });
+        });
+    }
 });

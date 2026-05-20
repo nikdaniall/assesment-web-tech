@@ -769,3 +769,84 @@ body {
 .close-search-btn:hover {
     color: var(--accent-orange);
 }
+
+/* ==========================================
+   MOBILE RESPONSIVE HAMBURGER NAVIGATION
+   ========================================== */
+
+/* Hidden by default on desktop viewports */
+.hamburger-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1100;
+}
+
+.hamburger-toggle .bar {
+    width: 100%;
+    height: 2px;
+    background-color: var(--text-light);
+    transition: all 0.3s ease;
+}
+
+/* Responsive Mobile Screen Styles */
+@media screen and (max-width: 768px) {
+    .hamburger-toggle {
+        display: flex; /* Shows hamburger bars icon on mobile */
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Keeps drawer completely hidden off-screen initially */
+        width: 70%;
+        height: 100vh;
+        background-color: rgba(17, 17, 17, 0.98);
+        border-left: 1px solid #222;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 100px 10%;
+        gap: 25px;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 1050;
+    }
+
+    .nav-links.show {
+        right: 0; /* Slides the drawer out onto view smoothly */
+    }
+
+    .nav-links a {
+        margin-left: 0;
+        font-size: 1.1rem;
+        width: 100%;
+    }
+
+    /* Transform hamburger lines into an 'X' close indicator when active */
+    .hamburger-toggle.open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-toggle.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-toggle.open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* Mobile specific adjustment for navigation dropdown menu item positioning */
+    .dropdown-content {
+        position: relative;
+        top: 10px;
+        left: 15px;
+        box-shadow: none;
+        background: transparent;
+        padding-left: 10px;
+        border-left: 1px solid var(--accent-orange);
+    }
+}
