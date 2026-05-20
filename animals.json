@@ -1,0 +1,62 @@
+[
+  { 
+    "name": "Sumatran Rhino", 
+    "type": "mammal",
+    "desc": "Critically endangered due to habitat loss and fragmentation.", 
+    "img": "https://images.unsplash.com/photo-1762298472132-b22685b739e3?q=80&w=1174&auto=format&fit=crop",
+    "pop": "Fewer than 80",
+    "habitat": "Tropical rainforests of Sumatra & Borneo",
+    "threats": "Poaching and habitat loss threaten the Sumatran rhinoceros. Many are killed for their horns, while forest destruction isolates small groups, making breeding difficult and reducing their population.",
+    "status": "Critically Endangered"
+  },
+  { 
+    "name": "Mountain Gorilla", 
+    "type": "mammal",
+    "desc": "Found in high-altitude forests, facing threats from human conflict.", 
+    "img": "https://images.unsplash.com/photo-1667504319000-8133f9021cf8?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "pop": "Approximately 1,063",
+    "habitat": "Cloud forests of the Virunga Mountains",
+    "threats": "Mountain gorillas face threats from illegal hunting, human diseases, and conflicts near their habitats, which damage forests and reduce their population.",
+    "status": "Endangered"
+  },
+  { 
+    "name": "Vaquita", 
+    "type": "marine",
+    "desc": "The world's rarest marine mammal, found only in the Gulf of California.", 
+    "img": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=400",
+    "pop": "Roughly 10 individuals",
+    "habitat": "Gulf of California (Mexico)",
+    "threats": "Vaquitas are often trapped and drowned in illegal fishing nets used to catch totoaba fish, causing their population to decline rapidly.",
+    "status": "Critically Endangered"
+  },
+  {
+    "name": "Javan Rhino",
+    "type": "mammal",
+    "desc": "The most threatened of the five rhino species, with only one wild population remaining.",
+    "img": "https://images.unsplash.com/photo-1711709377447-a4c63ce1bcbc?q=80&w=1036&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "pop": "Around 76 individuals",
+    "habitat": "Ujung Kulon National Park in Java, Indonesia",
+    "threats": "The Javan rhino has an extremely small population, making it vulnerable to disease outbreaks and natural disasters that could quickly threaten its survival.",
+    "status": "Critically Endangered"
+  },
+  {
+    "name": "Amur Leopard",
+    "type": "mammal",
+    "desc": "An incredibly rare solitary leopard adapted to living in harsh, snowy climates.",
+    "img": "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=400",
+    "pop": "Around 100 individuals",
+    "habitat": "Temperate forests of the Russian Far East and Northeast China",
+    "threats": "Amur leopards are threatened by illegal hunting and forest loss, while their small population increases inbreeding and reduces genetic diversity.",
+    "status": "Critically Endangered"
+  },
+  {
+    "name": "Hawksbill Turtle",
+    "type": "reptile",
+    "desc": "Highly valued for their beautiful shells, these marine turtles are vital for coral reefs.",
+    "img": "https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?w=400",
+    "pop": "Decreasing rapidly",
+    "habitat": "Tropical oceans, predominantly around coral reefs",
+    "threats": "Hawksbill turtles are hunted for their shells, while beach development and egg collection threaten their nesting and survival.",
+    "status": "Critically Endangered"
+  }
+]

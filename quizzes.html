@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Species Protection Quiz | Endangered Earth</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        /* Quiz Specific Layout Styling Override */
+        .quiz-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1547721064-da6cfb341d50?q=80&w=1200&auto=format&fit=crop') no-repeat center center/cover;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .quiz-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: #ffffff;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .quiz-container {
+            max-width: 750px;
+            margin: -40px auto 80px auto;
+            background-color: #111111;
+            border: 1px solid #2a2a2a;
+            border-top: 3px solid var(--accent-orange);
+            padding: 40px;
+            position: relative;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .quiz-progress {
+            font-size: 0.85rem;
+            color: var(--accent-orange);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .quiz-question {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #ffffff;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 30px;
+        }
+        .option-btn {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+            color: var(--text-light);
+            padding: 14px 20px;
+            text-align: left;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .option-btn:hover:not([disabled]) {
+            border-color: var(--accent-orange);
+            background-color: #222;
+            padding-left: 25px;
+        }
+        .option-btn.correct {
+            background-color: #1c3d22 !important;
+            border-color: #27ae60 !important;
+            color: #fff !important;
+            font-weight: 600;
+        }
+        .option-btn.wrong {
+            background-color: #4a1d1d !important;
+            border-color: #c0392b !important;
+            color: #fff !important;
+        }
+        .accessibility-badge {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-left: 10px;
+            padding: 2px 8px;
+            border-radius: 3px;
+            background: rgba(0,0,0,0.4);
+            white-space: nowrap;
+        }
+        .quiz-footer-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .quiz-btn {
+            background-color: var(--accent-orange);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--transition);
+            border-radius: 4px;
+        }
+        .quiz-btn:hover {
+            background-color: #b56238;
+        }
+        .quiz-btn:disabled {
+            background-color: #333;
+            color: #666;
+            cursor: not-allowed;
+        }
+        .results-box {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .results-score {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--accent-orange);
+            margin: 15px 0;
+        }
+        .results-rating {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 15px;
+        }
+        .results-text {
+            font-size: 0.95rem;
+            opacity: 0.7;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* ==========================================
+           ACCESSIBLE FEEDBACK POP-UP OVERLAY
+           ========================================== */
+        .quiz-feedback-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            font-size: 5rem;
+            pointer-events: none;
+            z-index: 2000;
+            opacity: 0;
+            animation: emojiPopAndFade 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes emojiPopAndFade {
+            0% {
+                transform: translate(-50%, -50%) scale(0.3);
+                opacity: 0;
+            }
+            30% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 1;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body class="quiz-page">
+
+    <header class="navbar">
+        <div class="logo">[ Endangered Earth ]</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            
+            <div class="dropdown">
+                <a href="index.html" class="dropdown-trigger">Species</a>
+                <div class="dropdown-content">
+                    <a href="index.html" data-nav-filter="all">All Species</a>
+                    <a href="index.html" data-nav-filter="mammal">Mammals</a>
+                    <a href="index.html" data-nav-filter="marine">Marine Life</a>
+                    <a href="index.html" data-nav-filter="reptile">Reptiles</a>
+                </div>
+            </div>
+
+            <a href="quizzes.html">Quizzes</a>
+            <a href="team.html">Team</a>
+            <a href="index.html" id="nav-search-trigger">Search</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="quiz-hero">
+            <h1>WILDLIFE AWARENESS CHALLENGE</h1>
+            <p style="letter-spacing: 2px; color: var(--text-light); font-size: 0.9rem;">TEST YOUR KNOWLEDGE ON CRITICAL CONSERVATION BIOLOGY</p>
+        </section>
+
+        <section class="container">
+            <div class="quiz-container" id="quiz-wrapper">
+                <div id="quiz-content">
+                    <div class="quiz-progress" id="progress-text">Question 1 of 10</div>
+                    <div class="quiz-question" id="question-text">Loading awareness question stream...</div>
+                    <div class="quiz-options" id="options-block">
+                        </div>
+                    <div class="quiz-footer-actions">
+                        <button class="quiz-btn" id="next-quiz-btn" disabled>Next Question</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">[ ENDANGERED EARTH ]</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a> | <a href="quizzes.html">Quizzes</a> | <a href="donate.html">Act Now</a> | <a href="about.html">About</a> | <a href="team.html">Team</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // 10 Curated Conservation Questions
+            const quizQuestions = [
+                {
+                    question: "Which marine mammal is currently considered the rarest in the world, with fewer than 10-15 individuals remaining in the Gulf of California?",
+                    options: ["Blue Whale", "Vaquita", "Hawaiian Monk Seal", "Dugong"],
+                    answer: 1,
+                    explanation: "The Vaquita is the world's rarest marine mammal, pushed to near extinction primarily due to entanglement in illegal gillnets."
+                },
+                {
+                    question: "What is the primary factor driving the drastic reduction of Mountain Gorilla populations in Central Africa?",
+                    options: ["Commercial Ivory Poaching", "Rising Sea Levels", "Human Conflict, Habitat Loss, and Disease Transfer", "Invasive Predatory Species"],
+                    answer: 2,
+                    explanation: "Mountain Gorillas face critical threats from human encroachment, civil unrest, habitat fragmentation, and respiratory illnesses caught from humans."
+                },
+                {
+                    question: "Roughly how many threatened species are currently monitored on global red lists as facing active extinction risks?",
+                    options: ["Over 41,000 Species", "Around 5,000 Species", "Fewer than 1,200 Species", "Approximately 12,500 Species"],
+                    answer: 0,
+                    explanation: "The IUCN Red List indicates that over 41,000+ species are actively threatened with extinction across global ecosystems."
+                },
+                {
+                    question: "The Javan Rhino's last remaining wild population is entirely isolated inside which country?",
+                    options: ["Malaysia", "Vietnam", "India", "Indonesia"],
+                    answer: 3,
+                    explanation: "The entire remaining wild population of Javan Rhinos lives inside Ujung Kulon National Park on the island of Java, Indonesia."
+                },
+                {
+                    question: "How does rapid deforestation directly cause immediate spikes in local wildlife extinction vectors?",
+                    options: ["It reduces global oxygen levels instantly", "It strips vital shelter, disrupts migratory corridors, and isolates breeding pairs", "It alters animal predatory camouflage genetics", "It invites ocean acidification into inland streams"],
+                    answer: 1,
+                    explanation: "Clearing forests tears down natural habitats, blocks migration routes, and leaves species isolated in tiny pockets where they can't find food or mates."
+                },
+                {
+                    question: "What unique geographic climate adaptation makes the Critically Endangered Amur Leopard uniquely vulnerable to logging?",
+                    options: ["It needs specialized desert vegetation", "It is adapted to living in harsh, snowy northern forests and needs huge solitary territories", "It breeds exclusively in tidal mangrove swamps", "It relies entirely on migrating river salmon"],
+                    answer: 1,
+                    explanation: "The Amur Leopard is highly adapted to snowy northern climates. Because they are solitary hunters requiring huge home territories, logging and habitat fragmentation are devastating."
+                },
+                {
+                    question: "Which species of sea turtle is heavily endangered due to wildlife traffic targeting its beautiful, translucent colored shell?",
+                    options: ["Leatherback Sea Turtle", "Loggerhead Sea Turtle", "Hawksbill Sea Turtle", "Green Sea Turtle"],
+                    answer: 2,
+                    explanation: "Hawksbill turtles are hunted illegally to fuel the black-market trade for tortoiseshell trinkets, jewelry, and ornamental structures."
+                },
+                {
+                    question: "What ecological concept describes a species whose removal would completely destabilize or collapse an entire ecosystem?",
+                    options: ["Indicator Species", "Keystone Species", "Invasive Species", "Flagship Species"],
+                    answer: 1,
+                    explanation: "A Keystone Species (like sea otters or apex predators) holds an entire food web together. If lost, the ecosystem changes completely or ceases to exist."
+                },
+                {
+                    question: "What major international treaty regulates global wildlife trade to protect endangered plants and animals from over-exploitation?",
+                    options: ["The Kyoto Protocol", "The Geneva Convention", "CITES", "The Paris Agreement"],
+                    answer: 2,
+                    explanation: "CITES (Convention on International Trade in Endangered Species of Wild Fauna and Flora) is an international agreement ensuring wildlife trade does not threaten survival."
+                },
+                {
+                    question: "Why are small, isolated animal populations (like the remaining Sumatran Rhinos) susceptible to secondary extinction vectors even if poaching is stopped?",
+                    options: ["They lose interest in foraging food", "Inbreeding depression and lack of genetic diversity make them vulnerable to singular disease outbreaks", "They grow too large for their remaining territory", "They undergo accelerated mutation speeds"],
+                    answer: 1,
+                    explanation: "When populations shrink into isolated islands, inbreeding decreases genetic fitness. A single severe disease or natural disaster can wipe out the entire remaining gene pool."
+                }
+            ];
+
+            let currentQuestionIndex = 0;
+            let finalUserScore = 0;
+            let answeredStatus = false;
+
+            const progressText = document.getElementById("progress-text");
+            const questionText = document.getElementById("question-text");
+            const optionsBlock = document.getElementById("options-block");
+            const nextButton = document.getElementById("next-quiz-btn");
+            const quizContent = document.getElementById("quiz-content");
+
+            function loadQuestion() {
+                answeredStatus = false;
+                nextButton.disabled = true;
+                optionsBlock.innerHTML = "";
+                
+                const currentData = quizQuestions[currentQuestionIndex];
+                progressText.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+                questionText.textContent = currentData.question;
+
+                currentData.options.forEach((option, index) => {
+                    const button = document.createElement("button");
+                    button.className = "option-btn";
+                    
+                    const textLabel = document.createElement("span");
+                    textLabel.textContent = option;
+                    button.appendChild(textLabel);
+
+                    button.addEventListener("click", () => evaluateUserChoice(button, index));
+                    optionsBlock.appendChild(button);
+                });
+                
+                if (currentQuestionIndex === quizQuestions.length - 1) {
+                    nextButton.textContent = "Finish & See Results";
+                } else {
+                    nextButton.textContent = "Next Question";
+                }
+            }
+
+            function evaluateUserChoice(selectedButton, chosenIndex) {
+                if (answeredStatus) return; 
+                answeredStatus = true;
+
+                const currentData = quizQuestions[currentQuestionIndex];
+                const allButtons = optionsBlock.querySelectorAll(".option-btn");
+                const quizWrapper = document.getElementById("quiz-wrapper");
+
+                allButtons.forEach((btn) => btn.disabled = true); 
+
+                // Create floating popup overlay node
+                const popUpEmoji = document.createElement("div");
+                popUpEmoji.className = "quiz-feedback-overlay";
+
+                allButtons.forEach((btn, idx) => {
+                    if (idx === currentData.answer) {
+                        btn.classList.add("correct");
+                        const label = document.createElement("span");
+                        label.className = "accessibility-badge";
+                        label.textContent = "✅ Correct";
+                        btn.appendChild(label);
+                        
+                        if (chosenIndex === currentData.answer) {
+                            finalUserScore++;
+                            popUpEmoji.textContent = "✅";
+                        }
+                    } else if (idx === chosenIndex) {
+                        btn.classList.add("wrong");
+                        const label = document.createElement("span");
+                        label.className = "accessibility-badge";
+                        label.textContent = "❌ Incorrect";
+                        btn.appendChild(label);
+                        
+                        popUpEmoji.textContent = "❌";
+                    }
+                });
+
+                // Display dynamic animated popup overlay
+                if (quizWrapper) {
+                    quizWrapper.appendChild(popUpEmoji);
+                    setTimeout(() => {
+                        popUpEmoji.remove();
+                    }, 1000);
+                }
+
+                // Dynamic fact check explanation container
+                const contextBox = document.createElement("div");
+                contextBox.style.marginTop = "15px";
+                contextBox.style.padding = "15px";
+                contextBox.style.background = "#161c18";
+                contextBox.style.borderLeft = "3px solid #27ae60";
+                contextBox.style.fontSize = "0.9rem";
+                contextBox.style.color = "#a2bcae";
+                contextBox.innerHTML = `<strong>Fact Check:</strong> ${currentData.explanation}`;
+                optionsBlock.appendChild(contextBox);
+
+                nextButton.disabled = false;
+            }
+
+            nextButton.addEventListener("click", () => {
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    loadQuestion();
+                } else {
+                    displayFinalResults();
+                }
+            });
+
+            function displayFinalResults() {
+                progressText.style.display = "none";
+                let ratingTitle = "";
+                let subdescription = "";
+
+                if (finalUserScore === quizQuestions.length) {
+                    ratingTitle = "Biodiversity Champion!";
+                    subdescription = "Incredible, a perfect score! You possess a masterful understanding of conservation biology and critical ecosystem threats. Share your knowledge with others!";
+                } else if (finalUserScore >= 7) {
+                    ratingTitle = "Eco Defender";
+                    subdescription = "Great job! You have an advanced foundational grasp of the core variables impacting threatened wildlife across global borders.";
+                } else if (finalUserScore >= 4) {
+                    ratingTitle = "Wildlife Ally";
+                    subdescription = "Solid effort. You understand many core ecological threats, but spending more time reading our species data sheets can help sharpen your knowledge.";
+                } else {
+                    ratingTitle = "Awareness Observer";
+                    subdescription = "Every conservation journey starts with awareness. Consider reviewing the species grid logs to learn more about localized extinction threats.";
+                }
+
+                quizContent.innerHTML = `
+                    <div class="results-box">
+                        <i class="fa-solid fa-earth-americas" style="font-size: 3.5rem; color: var(--accent-orange); margin-bottom: 10px;"></i>
+                        <h2 style="font-family: 'Playfair Display', serif; color: white;">QUIZ COMPLETED</h2>
+                        <div class="results-score">${finalUserScore} / ${quizQuestions.length}</div>
+                        <div class="results-rating">${ratingTitle}</div>
+                        <p class="results-text">${subdescription}</p>
+                        <button class="quiz-btn" onclick="window.location.reload()">Retake Quiz</button>
+                    </div>
+                `;
+            }
+
+            loadQuestion();
+        });
+    </script>
+</body>
+</html>

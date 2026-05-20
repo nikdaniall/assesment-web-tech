@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endangered Earth | Save Critical Species</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">[ Endangered Earth ]</div>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            
+            <div class="dropdown">
+                <a href="#featured-animals" class="dropdown-trigger">Species</a>
+                <div class="dropdown-content">
+                    <a href="#featured-animals" data-nav-filter="all">All Species</a>
+                    <a href="#featured-animals" data-nav-filter="mammal">Mammals</a>
+                    <a href="#featured-animals" data-nav-filter="marine">Marine Life</a>
+                    <a href="#featured-animals" data-nav-filter="reptile">Reptiles</a>
+                </div>
+            </div>
+
+            <a href="quizzes.html">Quizzes</a>
+            <a href="team.html">Team</a>
+            <a href="#" id="nav-search-trigger">Search</a>
+            </nav>
+        </header>
+
+        <div id="top-search-bar-panel" class="top-search-panel">
+            <div class="top-search-container">
+                <div class="search-field-wrapper">
+                    <i class="fa-solid fa-magnifying-glass inline-search-icon"></i>
+                    <input type="text" id="species-search-input" placeholder="Search endangered animals by name, habitat, or category..." autocomplete="off">
+                </div>
+                <button id="close-top-search" class="close-search-btn">&times;</button>
+            </div>
+        </div>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>THE SILENCE OF THE WILD IS GETTING LOUDER.</h1>
+                <p>JOIN THE FIGHT TO SAVE CRITICAL SPECIES</p>
+                <div class="hero-btn">
+                    <a href="about.html" class="btn btn-outline">LEARN MORE</a>
+                    <a href="donate.html" class="btn btn-primary">HELP NOW</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section" id="featured-animals">
+            <h2 class="section-title">FEATURED ENDANGERED ANIMALS</h2>
+
+            <div class="animal-grid" id="animal-container">
+                <div class="loader">Loading species...</div>
+            </div>
+        </section>
+
+        <section class="facts-section">
+            <div class="facts-container">
+                <div class="stat-box">
+                    <h3>FACTS</h3>
+                    <div class="stat-number">
+                        <span id="threat-count">41,415</span>
+                    </div>
+                    <p>Species Threatened</p>
+                </div>
+                <div class="map-wrapper">
+                    <div class="map-overlay"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="causes-section" id="causes">
+            <h2 class="section-title">WHY THEY ARE DISAPPEARING</h2>
+            <div class="causes-grid">
+                
+                <div class="cause-item">
+                    <h4>Deforestation</h4>
+                    <p>Industrial logging and agricultural expansion clear millions of acres of forest annually, stripping wildlife of vital shelter and food sources.</p>
+                </div>
+
+                <div class="cause-item">
+                    <h4>Poaching</h4>
+                    <p>Driven by illegal global black markets, commercial hunting ruthlessly targets rare species and drives fragile populations toward extinction.</p>
+                </div>
+
+                <div class="cause-item">
+                    <h4>Climate Change</h4>
+                    <p>Rising global temperatures trigger extreme weather and severe droughts, causing resource scarcity faster than wildlife can adapt.</p>
+                </div>
+                
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-logo">[ ENDANGERED EARTH ]</div>
+        <div class="footer-links">
+            <a href="index.html">Home</a> | <a href="quizzes.html">Quizzes</a> | <a href="donate.html">Act Now</a> | <a href="about.html">About</a> | <a href="team.html">Team</a>
+        </div>
+    </footer>
+
+    <div id="animal-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
