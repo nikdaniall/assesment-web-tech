@@ -20,14 +20,14 @@
     "status": "Endangered"
   },
   { 
-    "name": "Vaquita", 
+    "name": "Blue Whale", 
     "type": "marine",
-    "desc": "The world's rarest marine mammal, found only in the Gulf of California.", 
+    "desc": "The largest animal ever known to have lived on Earth, migrating across global oceans.", 
     "img": "https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=400",
-    "pop": "Roughly 10 individuals",
-    "habitat": "Gulf of California (Mexico)",
-    "threats": "Vaquitas are often trapped and drowned in illegal fishing nets used to catch totoaba fish, causing their population to decline rapidly.",
-    "status": "Critically Endangered"
+    "pop": "Around 10,000 - 25,000 individuals",
+    "habitat": "Antarctic Ocean, Atlantic Ocean, and Pacific Ocean basins",
+    "threats": "Commercial whaling historically devastated their numbers. Today, they face severe threats from ship strikes, ocean noise pollution, and toxic chemical runoffs.",
+    "status": "Endangered"
   },
   {
     "name": "Javan Rhino",
@@ -43,7 +43,7 @@
     "name": "Amur Leopard",
     "type": "mammal",
     "desc": "An incredibly rare solitary leopard adapted to living in harsh, snowy climates.",
-    "img": "https://images.unsplash.com/photo-1602491453631-e2a5ad90a131?w=400",
+    "img": "https://images.unsplash.com/photo-1704265587328-6c0a079e0b65?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     "pop": "Around 100 individuals",
     "habitat": "Temperate forests of the Russian Far East and Northeast China",
     "threats": "Amur leopards are threatened by illegal hunting and forest loss, while their small population increases inbreeding and reduces genetic diversity.",
