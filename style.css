@@ -816,10 +816,12 @@ body {
         gap: 25px;
         transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1050;
+        visibility: hidden;
     }
 
     .nav-links.show {
         right: 0; /* Slides the drawer out onto view smoothly */
+        visibility: visible;
     }
 
     .nav-links a {
